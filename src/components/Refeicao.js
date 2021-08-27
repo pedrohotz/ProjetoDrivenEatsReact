@@ -20,12 +20,82 @@ let pratos = [
 }
 ]
 
+let sobremesa = [
+    {
+        imgPrato:"css/img/petitgateu.jpg",
+        titlePrato:"Petit Gateau",
+        subtitle:"Petit gateau com acompanhmento de sorvete",
+        price:"12.90",
+    },
+    {
+        imgPrato:"css/img/bananasorvete.jpg",
+        titlePrato:"Banana Flambada",
+        subtitle:"Banana flambada com sorvete",
+        price:"9.90",
+    },
+    {
+        imgPrato:"css/img/romeuejulieta.jpg",
+        titlePrato:"Romeu e Julieta",
+        subtitle:"Queijo minas com goiabada",
+        price:"5.90",
+    }
+    ]
 
+    let bebidas = [
+        {
+            imgPrato:"css/img/coquinha_gelada 1.png",
+            titlePrato:"Coca Cola",
+            subtitle:"Lata 350ml",
+            price:"4.50",
+        },
+        {
+            imgPrato:"css/img/sucolata.jpg",
+            titlePrato:"Suco",
+            subtitle:"Lata 350ml",
+            price:"35.90",
+        },
+        {
+            imgPrato:"css/img/pepsi.jpg",
+            titlePrato:"Pepsi",
+            subtitle:"Lata 350ml",
+            price:"2.90",
+        }
+        ]
+        
 
 
 export default function Refeicao(){
     return(
-        pratos.map((prato) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price}/>))
+    <> 
+        <div class="pratos">
+            <p class="titulo-comida">Primeiro, seu prato</p>
+            <div class="pratos-conteudo comida">          
+            {pratos.map((prato) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price}/>))}
+            </div>
+        </div>
+        <div class="pratos">
+            <p class="titulo-comida">Agora, sua bebida</p>
+            <div class="pratos-conteudo bebida ">
+            {bebidas.map((prato) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price}/>))}
+            </div>
+        </div>
+        <div class="pratos">
+            <p class="titulo-comida">Por fim, sua sobremesa</p>
+            <div class="pratos-conteudo sobremesa">
+            {sobremesa.map((prato) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price}/>))}
+            </div>
+        </div>
+    </>
+
+
+
+
+
+
+
+
+
+       
     );
 }
 
