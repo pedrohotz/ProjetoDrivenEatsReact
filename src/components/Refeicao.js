@@ -1,4 +1,6 @@
 
+import React from "react";
+
 let pratos = [
 {
     imgPrato:"css/img/salmaomaracuja.jpg",
@@ -65,44 +67,49 @@ let sobremesa = [
 
 
 export default function Refeicao(){
+
+
+
+
+
     return(
     <> 
         <div class="pratos">
             <p class="titulo-comida">Primeiro, seu prato</p>
             <div class="pratos-conteudo comida">          
-            {pratos.map((prato) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price}/>))}
+            {pratos.map((prato) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} />))}
             </div>
         </div>
         <div class="pratos">
             <p class="titulo-comida">Agora, sua bebida</p>
             <div class="pratos-conteudo bebida ">
-            {bebidas.map((prato) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price}/>))}
+            {bebidas.map((prato) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} />))}
             </div>
         </div>
         <div class="pratos">
             <p class="titulo-comida">Por fim, sua sobremesa</p>
             <div class="pratos-conteudo sobremesa">
-            {sobremesa.map((prato) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price}/>))}
+            {sobremesa.map((prato) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} />))}
             </div>
         </div>
-    </>
-
-
-
-
-
-
-
-
-
-       
+    </> 
     );
 }
 
 
-function Prato(props){
+function Prato(props){    
+    const [selecionado, setSelecionado] = React.useState("");
+    function Selecionar(){
+        console.log("selecionei")
+        if (selecionado === ""){
+            setSelecionado("selecionado");
+        }
+        else {
+            setSelecionado("");
+        }
+    }
     return (
-    <div class="prato-individual comida esconder">
+    <div className={`prato-individual comida esconder ${selecionado}`} onClick={Selecionar}>
                 <img src={props.imgPrato}></img>
                 <p class="titulo-prato">{props.titlePrato}</p>
                 <span class="legenda-prato">{props.subtitle}</span>
@@ -118,3 +125,6 @@ function Prato(props){
     </div>     
     );
 }
+
+
+
