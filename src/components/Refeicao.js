@@ -99,17 +99,39 @@ export default function Refeicao(){
 
 function Prato(props){    
     const [selecionado, setSelecionado] = React.useState("");
+    const[botoes,setBotoes] = React.useState("escondido");
+    const[qtd,setQtd] = React.useState(0);
+
+   
     function Selecionar(){
-        console.log("selecionei")
         if (selecionado === ""){
             setSelecionado("selecionado");
+           
+            setBotoes("");
+            setQtd(1);
         }
         else {
             setSelecionado("");
+            setBotoes("escondido");
+            setQtd(0);
+        }
+    }
+
+    function Acrescentar(e){
+        e.stopPropagation();
+        setQtd(qtd + 1);
+    }
+    function Decrementar(e){
+        e.stopPropagation();
+        setQtd(qtd - 1);
+        console.log(qtd);
+        if (qtd === 1){
+            setSelecionado("");
+            setBotoes("escondido");
         }
     }
     return (
-    <div className={`prato-individual comida esconder ${selecionado}`} onClick={Selecionar}>
+    <div className={`prato-individual comida esconder ${selecionado}`} onClick={Selecionar} >
                 <img src={props.imgPrato}></img>
                 <p class="titulo-prato">{props.titlePrato}</p>
                 <span class="legenda-prato">{props.subtitle}</span>
@@ -122,6 +144,12 @@ function Prato(props){
                         <ion-icon name="checkmark-circle"></ion-icon>
                     </div>
                 </div>
+                <div className={`Botoes ${botoes}`}>
+                    <button onClick={(e)=> Acrescentar(e)}>+</button>
+                    <button onClick={(e) => Decrementar(e)}>-</button>
+                    <span>{qtd}</span>
+                </div>
+
     </div>     
     );
 }

@@ -6,6 +6,6 @@ export default function Content(){
 <div class="conteudo">
         <Refeicao />
         <Confirmation />
-    </div>
+</div>
     );
 }

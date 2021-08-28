@@ -245,3 +245,10 @@ body{
     z-index: 10;
 }
 
+.Botoes span{
+    margin-left: 30px;
+}
+
+.Botoes button {
+    z-index: 10;
+}
