@@ -1,3 +1,9 @@
+
+function habilitarBotao(){
+    console.log("teste")
+}
+
+
 export default function Confirmation(){
     return(
     <div class="selecionar">

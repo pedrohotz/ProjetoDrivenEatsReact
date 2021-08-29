@@ -64,8 +64,7 @@ let sobremesa = [
         }
         ]
         
-
-
+const pratosSelecionados = [];
 export default function Refeicao(){
 
 
@@ -77,19 +76,19 @@ export default function Refeicao(){
         <div class="pratos">
             <p class="titulo-comida">Primeiro, seu prato</p>
             <div class="pratos-conteudo comida">          
-            {pratos.map((prato) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} />))}
+            {pratos.map((prato,index) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} type="refeicao" Key={index} />))}
             </div>
         </div>
         <div class="pratos">
             <p class="titulo-comida">Agora, sua bebida</p>
             <div class="pratos-conteudo bebida ">
-            {bebidas.map((prato) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} />))}
+            {bebidas.map((prato,index) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} type="bebida" Key={index}/>))}
             </div>
         </div>
         <div class="pratos">
             <p class="titulo-comida">Por fim, sua sobremesa</p>
             <div class="pratos-conteudo sobremesa">
-            {sobremesa.map((prato) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} />))}
+            {sobremesa.map((prato,index) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} type="sobremesa" Key={index}/>))}
             </div>
         </div>
     </> 
@@ -101,19 +100,20 @@ function Prato(props){
     const [selecionado, setSelecionado] = React.useState("");
     const[botoes,setBotoes] = React.useState("escondido");
     const[qtd,setQtd] = React.useState(0);
-
-   
+    console.log(pratosSelecionados);
     function Selecionar(){
         if (selecionado === ""){
             setSelecionado("selecionado");
-           
             setBotoes("");
             setQtd(1);
+            pratosSelecionados.push(props);
+            validarBotao(pratosSelecionados);
         }
         else {
             setSelecionado("");
             setBotoes("escondido");
             setQtd(0);
+            pratosSelecionados.splice(props.Key,1);
         }
     }
 
@@ -128,6 +128,7 @@ function Prato(props){
         if (qtd === 1){
             setSelecionado("");
             setBotoes("escondido");
+            pratosSelecionados.splice(props.Key,1);
         }
     }
     return (
@@ -154,5 +155,14 @@ function Prato(props){
     );
 }
 
+
+
+function validarBotao(array){
+    const opcoes = [];
+    array.map((opcao) => (opcoes.push(opcao.type)))
+    if (opcoes.includes("refeicao") &&  opcoes.includes("bebida") && opcoes.includes("sobremesa")){
+        console.log("teste");
+    }
+}
 
 
