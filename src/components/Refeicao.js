@@ -63,32 +63,26 @@ let sobremesa = [
             price:"2.90",
         }
         ]
-        
 const pratosSelecionados = [];
-export default function Refeicao(){
-
-
-
-
-
+export default function Refeicao(props){
     return(
     <> 
         <div class="pratos">
             <p class="titulo-comida">Primeiro, seu prato</p>
             <div class="pratos-conteudo comida">          
-            {pratos.map((prato,index) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} type="refeicao" Key={index} />))}
+            {pratos.map((prato,index) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} type="refeicao" Key={index} validarBotao={props.validarBotao} />))}
             </div>
         </div>
         <div class="pratos">
             <p class="titulo-comida">Agora, sua bebida</p>
             <div class="pratos-conteudo bebida ">
-            {bebidas.map((prato,index) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} type="bebida" Key={index}/>))}
+            {bebidas.map((prato,index) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} type="bebida" Key={index} validarBotao={props.validarBotao}/>))}
             </div>
         </div>
         <div class="pratos">
             <p class="titulo-comida">Por fim, sua sobremesa</p>
             <div class="pratos-conteudo sobremesa">
-            {sobremesa.map((prato,index) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} type="sobremesa" Key={index}/>))}
+            {sobremesa.map((prato,index) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} type="sobremesa" Key={index} validarBotao={props.validarBotao}/>))}
             </div>
         </div>
     </> 
@@ -107,7 +101,7 @@ function Prato(props){
             setBotoes("");
             setQtd(1);
             pratosSelecionados.push(props);
-            validarBotao(pratosSelecionados);
+            props.validarBotao(pratosSelecionados);
         }
         else {
             setSelecionado("");
@@ -153,16 +147,6 @@ function Prato(props){
 
     </div>     
     );
-}
-
-
-
-function validarBotao(array){
-    const opcoes = [];
-    array.map((opcao) => (opcoes.push(opcao.type)))
-    if (opcoes.includes("refeicao") &&  opcoes.includes("bebida") && opcoes.includes("sobremesa")){
-        console.log("teste");
-    }
 }
 
 

@@ -1,11 +1,22 @@
 
 import Refeicao from "./Refeicao";
+import React from "react";
 import Confirmation from "./Confirmation";
 export default function Content(){
+
+  const [Btn, setBtn] = React.useState(false);
+function validarBotao(array){
+    const opcoes = [];
+    array.map((opcao) => (opcoes.push(opcao.type)))
+    if (opcoes.includes("refeicao") &&  opcoes.includes("bebida") && opcoes.includes("sobremesa")){
+        setBtn(true);
+        console.log("teste")
+    }
+}
     return(
 <div class="conteudo">
-        <Refeicao />
-        <Confirmation />
+        <Refeicao  validarBotao={validarBotao}/>
+        <Confirmation liberar={Btn} />
 </div>
     );
 }
