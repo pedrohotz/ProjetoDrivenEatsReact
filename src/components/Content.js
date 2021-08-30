@@ -5,6 +5,7 @@ import Confirmation from "./Confirmation";
 export default function Content(){
 
   const [Btn, setBtn] = React.useState(false);
+  const [arrayPedidos,setArray] = React.useState([]);
 function validarBotao(array){
     const opcoes = [];
     array.map((opcao) => (opcoes.push(opcao.type)))
@@ -15,8 +16,8 @@ function validarBotao(array){
 }
     return(
 <div class="conteudo">
-        <Refeicao  validarBotao={validarBotao}/>
-        <Confirmation liberar={Btn} />
+        <Refeicao  validarBotao={validarBotao} arrayPedidos={arrayPedidos} setArray={setArray}/>
+        <Confirmation liberar={Btn} pedidos={arrayPedidos} />
 </div>
     );
 }

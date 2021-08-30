@@ -64,25 +64,27 @@ let sobremesa = [
         }
         ]
 const pratosSelecionados = [];
+
 export default function Refeicao(props){
+    const[qtd,setQtd] = React.useState(0);
     return(
     <> 
         <div class="pratos">
             <p class="titulo-comida">Primeiro, seu prato</p>
             <div class="pratos-conteudo comida">          
-            {pratos.map((prato,index) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} type="refeicao" Key={index} validarBotao={props.validarBotao} />))}
+            {pratos.map((prato,index) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} type="refeicao" Key={index} qtd={qtd} validarBotao={props.validarBotao} arrayPedidos={props.arrayPedidos} setQtd={setQtd} setArray={props.setArray} />))}
             </div>
         </div>
         <div class="pratos">
             <p class="titulo-comida">Agora, sua bebida</p>
             <div class="pratos-conteudo bebida ">
-            {bebidas.map((prato,index) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} type="bebida" Key={index} validarBotao={props.validarBotao}/>))}
+            {bebidas.map((prato,index) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} type="bebida" Key={index} qtd={qtd} validarBotao={props.validarBotao} arrayPedidos={props.arrayPedidos} setQtd={setQtd} setArray={props.setArray}/>))}
             </div>
         </div>
         <div class="pratos">
             <p class="titulo-comida">Por fim, sua sobremesa</p>
             <div class="pratos-conteudo sobremesa">
-            {sobremesa.map((prato,index) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} type="sobremesa" Key={index} validarBotao={props.validarBotao}/>))}
+            {sobremesa.map((prato,index) => (<Prato imgPrato={prato.imgPrato} titlePrato={prato.titlePrato} subtitle={prato.subtitle} price={prato.price} type="sobremesa" Key={index} qtd={qtd} validarBotao={props.validarBotao} arrayPedidos={props.arrayPedidos} setQtd={setQtd} setArray={props.setArray}/>))}
             </div>
         </div>
     </> 
@@ -93,33 +95,35 @@ export default function Refeicao(props){
 function Prato(props){    
     const [selecionado, setSelecionado] = React.useState("");
     const[botoes,setBotoes] = React.useState("escondido");
-    const[qtd,setQtd] = React.useState(0);
-    console.log(pratosSelecionados);
+
+  
     function Selecionar(){
         if (selecionado === ""){
             setSelecionado("selecionado");
             setBotoes("");
-            setQtd(1);
+            props.setQtd(1);
             pratosSelecionados.push(props);
+            props.setArray(pratosSelecionados);
             props.validarBotao(pratosSelecionados);
         }
         else {
             setSelecionado("");
             setBotoes("escondido");
-            setQtd(0);
+            props.setQtd(0);
             pratosSelecionados.splice(props.Key,1);
         }
     }
 
     function Acrescentar(e){
         e.stopPropagation();
-        setQtd(qtd + 1);
+        props.setQtd(props.qtd + 1);
+        console.log(props.qtd);
     }
     function Decrementar(e){
         e.stopPropagation();
-        setQtd(qtd - 1);
-        console.log(qtd);
-        if (qtd === 1){
+        props.setQtd(props.qtd - 1);
+        console.log();
+        if (props.qtd === 1){
             setSelecionado("");
             setBotoes("escondido");
             pratosSelecionados.splice(props.Key,1);
@@ -142,7 +146,7 @@ function Prato(props){
                 <div className={`Botoes ${botoes}`}>
                     <button onClick={(e)=> Acrescentar(e)}>+</button>
                     <button onClick={(e) => Decrementar(e)}>-</button>
-                    <span>{qtd}</span>
+                    <span>{props.qtd}</span>
                 </div>
 
     </div>     
