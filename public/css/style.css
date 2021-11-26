@@ -171,6 +171,76 @@ body{
     display: flex;
 }
 
+.modal{
+    display: flex;
+    align-items:  center;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+.product-text{
+    font-size: 16px;
+    width: 110px;
+    word-break: break-word;
+    font-family: 'Roboto',sans-serif; 
+}
+.total{
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Roboto',sans-serif; 
+}
+.title-modal{
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Roboto',sans-serif; 
+}
+.close-modal{
+    border: none;
+    font-family: 'Roboto',sans-serif;
+    background: none;
+    color: #777777;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.plusButton{
+    border: none;
+    font-size: 20px;
+    color: red;
+    background: none;
+    width: 20px;
+    height: 20px;
+}
+.minusButton{
+    border: none;
+    font-size: 20px;
+    color: gray;
+    background: none;
+    width: 20px;
+    height: 20px;
+}
+.checkoutOrder{
+    width: 200px;
+    margin-top: 20px;
+    height: 52px;
+    border: none;
+    background: #50D074;
+    border-radius: 100px;
+    font-size: 22px;
+    font-family: 'Roboto',sans-serif;
+    color: #FFFFFF;
+
+}
+
+.modal-products{
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
 .confirme {
     font-family: 'Roboto',sans-serif;
     font-weight: bold;

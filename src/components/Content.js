@@ -2,22 +2,20 @@
 import Refeicao from "./Refeicao";
 import React from "react";
 import Confirmation from "./Confirmation";
+import productsList from "../ProductsList/productslist";
 export default function Content(){
+const [categories, setCategories] = React.useState(productsList);
 
-  const [Btn, setBtn] = React.useState(false);
-  const [arrayPedidos,setArray] = React.useState([]);
-function validarBotao(array){
-    const opcoes = [];
-    array.map((opcao) => (opcoes.push(opcao.type)))
-    if (opcoes.includes("refeicao") &&  opcoes.includes("bebida") && opcoes.includes("sobremesa")){
-        setBtn(true);
-        console.log("teste")
-    }
+
+function changeQuantity (product, newQuantity) {
+  
+    product.quantity = newQuantity;
+    setCategories([...categories])
 }
     return(
-<div class="conteudo">
-        <Refeicao  validarBotao={validarBotao} arrayPedidos={arrayPedidos} setArray={setArray}/>
-        <Confirmation liberar={Btn} pedidos={arrayPedidos} />
-</div>
+        <div class="conteudo">
+                {categories.map((category, index) => <Refeicao key={index} title={category.title} products={category.products} changeQuantity={changeQuantity} />)}
+                <Confirmation  categories={categories}/>
+        </div>
     );
 }
