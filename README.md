@@ -18,7 +18,7 @@ Driven eats is a mobile only aplication to order food and send the message to th
 
 # How to Run 
 
-### Dowload the project file and run **Npm i** to install the dependencies. then run Npm start to start the project in local host.
+### Dowload the project file and run **Npm i** to install the dependencies. Setup the "numberToSend" variable in src/components/Confirmation.js file to set the number that it will send the message, then run Npm start to run on local host. 
 
 
 
